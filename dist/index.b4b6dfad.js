@@ -2954,12 +2954,12 @@ const MyFlixApplication = ()=>{
         }, void 0, false, {
             fileName: "src/index.jsx",
             lineNumber: 10,
-            columnNumber: 13
+            columnNumber: 4
         }, undefined)
     }, void 0, false, {
         fileName: "src/index.jsx",
         lineNumber: 9,
-        columnNumber: 9
+        columnNumber: 3
     }, undefined);
 };
 _c = MyFlixApplication;
