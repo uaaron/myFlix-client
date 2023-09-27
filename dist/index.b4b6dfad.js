@@ -27309,6 +27309,12 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
+var _inceptionJpg = require("../../../img/inception.jpg");
+var _inceptionJpgDefault = parcelHelpers.interopDefault(_inceptionJpg);
+var _thegodfatherJpg = require("../../../img/thegodfather.jpg");
+var _thegodfatherJpgDefault = parcelHelpers.interopDefault(_thegodfatherJpg);
+var _matrixJpg = require("../../../img/matrix.jpg");
+var _matrixJpgDefault = parcelHelpers.interopDefault(_matrixJpg);
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
@@ -27319,7 +27325,7 @@ const MainView = ()=>{
             description: "A heist involves going into peoples dreams",
             director: "Mark Normand",
             genre: "Thriller",
-            imagePath: "/img/inception.jpg"
+            imagePath: (0, _inceptionJpgDefault.default)
         },
         {
             id: 2,
@@ -27327,7 +27333,7 @@ const MainView = ()=>{
             description: "A fight between powerful italian families",
             director: "Martin Scorecese",
             genre: "Drama",
-            imagePath: "/img/thegodfather.jpg"
+            imagePath: (0, _thegodfatherJpgDefault.default)
         },
         {
             id: 3,
@@ -27335,7 +27341,7 @@ const MainView = ()=>{
             description: "A coder finds out he is living in a simulation",
             director: "Shane Gillis",
             genre: "Action",
-            imagePath: "/img/matrix.jpg"
+            imagePath: (0, _matrixJpgDefault.default)
         }
     ]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
@@ -27344,14 +27350,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 37,
+        lineNumber: 40,
         columnNumber: 4
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 42,
+        lineNumber: 45,
         columnNumber: 10
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27362,16 +27368,16 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 48,
+                lineNumber: 51,
                 columnNumber: 5
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 46,
+        lineNumber: 49,
         columnNumber: 3
     }, undefined);
 };
-_s(MainView, "ysCd8vCI2wJ4KVgyCvDIj4qUyd4=");
+_s(MainView, "OHO8GVy6t6gK/y4wH6j0MWDt4XQ=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27381,7 +27387,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"g1KSh","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iJ6xg"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"g1KSh","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iJ6xg","../../../img/inception.jpg":"1NTn9","../../../img/thegodfather.jpg":"a4YPx","../../../img/matrix.jpg":"6y8Qu"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27582,6 +27588,50 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"g1KSh","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iJ6xg"}]},["gwm9T","i8EI4","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"g1KSh","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iJ6xg"}],"1NTn9":[function(require,module,exports) {
+module.exports = require("334f23d8027928b3").getBundleURL("byUka") + "inception.c468138f.jpg" + "?" + Date.now();
+
+},{"334f23d8027928b3":"hMusP"}],"hMusP":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+}
+// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"a4YPx":[function(require,module,exports) {
+module.exports = require("f6964da17152eb0c").getBundleURL("byUka") + "thegodfather.50f1bafa.jpg" + "?" + Date.now();
+
+},{"f6964da17152eb0c":"hMusP"}],"6y8Qu":[function(require,module,exports) {
+module.exports = require("fea1632faff7b372").getBundleURL("byUka") + "matrix.3da85de1.jpg" + "?" + Date.now();
+
+},{"fea1632faff7b372":"hMusP"}]},["gwm9T","i8EI4","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

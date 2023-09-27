@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import inception from "../../../img/inception.jpg";
+import theGodfather from "../../../img/thegodfather.jpg";
+import matrix from "../../../img/matrix.jpg";
 
 export const MainView = () => {
 	const [movies, setMovies] = useState([
@@ -10,7 +13,7 @@ export const MainView = () => {
 			description: "A heist involves going into peoples dreams",
 			director: "Mark Normand",
 			genre: "Thriller",
-			imagePath: "/img/inception.jpg"
+			imagePath: inception
 		},
 		{
 			id: 2,
@@ -18,7 +21,7 @@ export const MainView = () => {
 			description: "A fight between powerful italian families",
 			director: "Martin Scorecese",
 			genre: "Drama",
-			imagePath: "/img/thegodfather.jpg"
+			imagePath: theGodfather
 		},
 		{
 			id: 3,
@@ -26,7 +29,7 @@ export const MainView = () => {
 			description: "A coder finds out he is living in a simulation",
 			director: "Shane Gillis",
 			genre: "Action",
-			imagePath: "/img/matrix.jpg"
+			imagePath: matrix
 		}
 	])
 
