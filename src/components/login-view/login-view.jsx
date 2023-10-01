@@ -8,11 +8,11 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault();
 
     const data = {
-      Username: username,
+      UserName: username,
       Password: password
     };
 
-    fetch("/login", {
+    fetch("https://myflix22-92d05c2f180f.herokuapp.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -45,7 +45,7 @@ export const LoginView = ({ onLoggedIn }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          minlength="6"
+        //minlength="6"
         />
       </label>
       <label>

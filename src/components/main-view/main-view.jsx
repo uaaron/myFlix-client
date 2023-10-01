@@ -42,7 +42,17 @@ export const MainView = () => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
+				const moviesFromApi = data.map((doc) => {
+					return {
+						Title: doc.Title,
+						ImagePath: doc.ImagePath,
+						Director: doc.Director,
+						Genre: doc.Genre,
+						Description: doc.Description
+					};
+				});
+
+				setMovies(moviesFromApi)
 			});
 	}, [token]);
 
@@ -52,19 +62,23 @@ export const MainView = () => {
 			<MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
 		)
 	}
-
+	/*
 	if (movies.length === 0) {
 		return <div>The list is empty!</div>
-	}
+	}*/
 
 	if (!user) {
 		return (
-			<LoginView
-				onLoggedIn={(user, token) => {
-					setUser(user);
-					setToken(token);
-				}}
-			/>
+			<>
+				<LoginView
+					onLoggedIn={(user, token) => {
+						setUser(user);
+						setToken(token);
+					}}
+				/>
+				or
+				<SignupView />
+			</>
 		);
 	}
 
