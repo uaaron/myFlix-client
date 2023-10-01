@@ -38,7 +38,7 @@ export const MainView = () => {
 	}
 
 	if (!user) {
-		return <LoginView />;
+		return <LoginView onLoggedIn={(user) => setUser(user)} />;
 	}
 
 	return (
@@ -52,6 +52,7 @@ export const MainView = () => {
 					}}
 				/>
 			))}
+			<button onClick={() => { setUser(null) }}>Logout</button>
 		</div>
 	)
 }
