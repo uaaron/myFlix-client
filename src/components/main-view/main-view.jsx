@@ -44,6 +44,7 @@ export const MainView = () => {
 			.then((data) => {
 				const moviesFromApi = data.map((doc) => {
 					return {
+						id: doc._id,
 						Title: doc.Title,
 						ImagePath: doc.ImagePath,
 						Director: doc.Director,
@@ -93,7 +94,12 @@ export const MainView = () => {
 					}}
 				/>
 			))}
-			<button onClick={() => { setUser(null); setToken(null); }}>Logout</button>
+			<button onClick={() => {
+				setUser(null);
+				setToken(null);
+				localStorage.removeItem('user');
+				localStorage.removeItem('token')
+			}}>Logout</button>
 		</div>
 	)
 }
