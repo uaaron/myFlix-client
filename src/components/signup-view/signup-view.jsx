@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -73,7 +74,7 @@ export const SignupView = () => {
           required
         />
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   )
 }

@@ -3,6 +3,8 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import Nav from "react-bootstrap/Nav";
+import NavItem from "react-bootstrap";
 
 export const MainView = () => {
 	const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -11,6 +13,20 @@ export const MainView = () => {
 	const [selectedMovie, setSelectedMovie] = useState(null);
 	const [user, setUser] = useState(storedUser ? storedUser : null);
 	const [token, setToken] = useState(storedToken ? storedToken : null);
+	const Header = () => <Nav
+		activeKey="/home"
+		onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+	>
+		<Nav.Item>
+			<Nav.Link href="/home">MovieFlix</Nav.Link>
+		</Nav.Item>
+		<Nav.Item>
+			<Nav.Link eventKey="link-1">About</Nav.Link>
+		</Nav.Item>
+		<Nav.Item>
+			<Nav.Link eventKey="link-2">Portfolio Site</Nav.Link>
+		</Nav.Item>
+	</Nav>
 
 	/* --- Keeping as Reference ---
 		useEffect(() => {
@@ -71,6 +87,9 @@ export const MainView = () => {
 	if (!user) {
 		return (
 			<>
+				<Header />
+				<br></br>
+				<br></br>
 				<LoginView
 					onLoggedIn={(user, token) => {
 						setUser(user);

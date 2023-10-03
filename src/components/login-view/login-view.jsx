@@ -57,7 +57,7 @@ export const LoginView = ({ onLoggedIn }) => {
           required
         />
       </label>
-      <button type="submit">
+      <button type="submit" className="btn btn-primary">
         Submit
       </button>
     </form>
