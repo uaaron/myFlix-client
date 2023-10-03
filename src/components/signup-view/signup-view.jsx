@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { InputGroup, Input, Form } from "react-bootstrap";
+
 
 
 export const SignupView = () => {
@@ -37,16 +39,21 @@ export const SignupView = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+      {/* <label>
         Username:
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-        //minLength="4"
         />
-      </label>
+      </label> */}
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Username: </Form.Label>
+        <Form.Control type="text" value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required />
+      </Form.Group>
       <label>
         Password:
         <input
