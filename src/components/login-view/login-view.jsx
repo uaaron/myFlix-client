@@ -57,6 +57,7 @@ export const LoginView = ({ onLoggedIn }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </Form.Group>
+      <Button className="btn btn-primary" type="submit">Submit</Button>
     </Form>
     /*
     <form onSubmit={handleSubmit}>
