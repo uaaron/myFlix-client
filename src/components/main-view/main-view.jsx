@@ -94,13 +94,15 @@ export const MainView = () => {
 			) : (
 				<>
 					{movies.map((movie) => (
-						<MovieCard
-							key={movie.id}
-							movie={movie}
-							onMovieClick={(newSelectedMovie) => {
-								setSelectedMovie(newSelectedMovie);
-							}}
-						/>
+						<Col className="mb-5" key={movies.id} md={3}>
+							<MovieCard
+								key={movie.id}
+								movie={movie}
+								onMovieClick={(newSelectedMovie) => {
+									setSelectedMovie(newSelectedMovie);
+								}}
+							/>
+						</Col>
 					))}
 					<button onClick={() => {
 						setUser(null);
@@ -112,4 +114,4 @@ export const MainView = () => {
 			)}
 		</Row>
 	)
-} 
+}
