@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InputGroup, Input, Form } from "react-bootstrap";
+import { InputGroup, Input, Form, Button } from "react-bootstrap";
 
 
 
@@ -74,6 +74,7 @@ export const SignupView = () => {
           required
         />
       </Form.Group>
+      <Button className="btn btn-primary" type="submit">Submit</Button>
     </Form>
   )
 }
