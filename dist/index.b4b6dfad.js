@@ -2947,7 +2947,7 @@ var _client = require("react-dom/client");
 var _mainView = require("./components/main-view/main-view");
 var _container = require("react-bootstrap/Container");
 var _containerDefault = parcelHelpers.interopDefault(_container);
-var _bootstrapMinCss = require("bootstrap/dist/css/bootstrap.min.css");
+//import 'bootstrap/dist/css/bootstrap.min.css';
 // import statement to indicate necessary bundling of './index.scss'
 var _indexScss = require("./index.scss");
 // Main component (will eventually use all the others)
@@ -2985,7 +2985,7 @@ $RefreshReg$(_c, "MyFlixApplication");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./components/main-view/main-view":"4gflv","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iJ6xg","react-bootstrap/Container":"hEdsw","@parcel/transformer-js/src/esmodule-helpers.js":"g1KSh","./index.scss":"lJZlQ","bootstrap/dist/css/bootstrap.min.css":"i5LP7"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./components/main-view/main-view":"4gflv","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iJ6xg","react-bootstrap/Container":"hEdsw","@parcel/transformer-js/src/esmodule-helpers.js":"g1KSh","./index.scss":"lJZlQ"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("ee51401569654d91");
 
@@ -42059,6 +42059,6 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"g1KSh","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iJ6xg","react-bootstrap":"3AD9A"}],"lJZlQ":[function() {},{}],"i5LP7":[function() {},{}]},["gwm9T","i8EI4","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"g1KSh","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iJ6xg","react-bootstrap":"3AD9A"}],"lJZlQ":[function() {},{}]},["gwm9T","i8EI4","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
