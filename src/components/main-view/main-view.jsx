@@ -1,48 +1,86 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import inception from "../../../img/inception.jpg";
-import theGodfather from "../../../img/thegodfather.jpg";
-import matrix from "../../../img/matrix.jpg";
+import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
-	const [movies, setMovies] = useState([
-		{
-			id: 1,
-			title: "Inception",
-			description: "A heist involves going into peoples dreams",
-			director: "Mark Normand",
-			genre: "Thriller",
-			imagePath: inception
-		},
-		{
-			id: 2,
-			title: "The Godfather",
-			description: "A fight between powerful italian families",
-			director: "Martin Scorecese",
-			genre: "Drama",
-			imagePath: theGodfather
-		},
-		{
-			id: 3,
-			title: "The Matrix",
-			description: "A coder finds out he is living in a simulation",
-			director: "Shane Gillis",
-			genre: "Action",
-			imagePath: matrix
-		}
-	])
-
+	const storedUser = JSON.parse(localStorage.getItem("user"));
+	const storedToken = localStorage.getItem("token");
+	const [movies, setMovies] = useState([]);
 	const [selectedMovie, setSelectedMovie] = useState(null);
+	const [user, setUser] = useState(storedUser ? storedUser : null);
+	const [token, setToken] = useState(storedToken ? storedToken : null);
+
+	/* --- Keeping as Reference ---
+		useEffect(() => {
+			fetch("https://myflix22-92d05c2f180f.herokuapp.com/movies")
+				.then((response) => response.json())
+				.then((data) => {
+					const moviesFromApi = data.map((doc) => {
+						return {
+							title: doc.title,
+							image: doc.imagePath,
+							director: doc.director,
+							genre: doc.genre,
+							description: doc.description
+						};
+					});
+	
+					setMovies(moviesFromApi)
+				});
+		}, []);
+		*/
+
+	useEffect(() => {
+		if (!token) {
+			return;
+		}
+
+		fetch("https://myflix22-92d05c2f180f.herokuapp.com/movies", {
+			headers: { Authorization: `Bearer ${token}` }
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				const moviesFromApi = data.map((doc) => {
+					return {
+						id: doc._id,
+						Title: doc.Title,
+						ImagePath: doc.ImagePath,
+						Director: doc.Director,
+						Genre: doc.Genre,
+						Description: doc.Description
+					};
+				});
+
+				setMovies(moviesFromApi)
+			});
+	}, [token]);
+
 
 	if (selectedMovie) {
 		return (
 			<MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
 		)
 	}
-
+	/*
 	if (movies.length === 0) {
 		return <div>The list is empty!</div>
+	}*/
+
+	if (!user) {
+		return (
+			<>
+				<LoginView
+					onLoggedIn={(user, token) => {
+						setUser(user);
+						setToken(token);
+					}}
+				/>
+				or
+				<SignupView />
+			</>
+		);
 	}
 
 	return (
@@ -56,6 +94,12 @@ export const MainView = () => {
 					}}
 				/>
 			))}
+			<button onClick={() => {
+				setUser(null);
+				setToken(null);
+				localStorage.removeItem('user');
+				localStorage.removeItem('token')
+			}}>Logout</button>
 		</div>
 	)
 }
