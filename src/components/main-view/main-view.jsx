@@ -3,6 +3,10 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Nav from "react-bootstrap/Nav";
+import NavItem from "react-bootstrap";
 
 export const MainView = () => {
 	const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -12,25 +16,22 @@ export const MainView = () => {
 	const [user, setUser] = useState(storedUser ? storedUser : null);
 	const [token, setToken] = useState(storedToken ? storedToken : null);
 
-	/* --- Keeping as Reference ---
-		useEffect(() => {
-			fetch("https://myflix22-92d05c2f180f.herokuapp.com/movies")
-				.then((response) => response.json())
-				.then((data) => {
-					const moviesFromApi = data.map((doc) => {
-						return {
-							title: doc.title,
-							image: doc.imagePath,
-							director: doc.director,
-							genre: doc.genre,
-							description: doc.description
-						};
-					});
-	
-					setMovies(moviesFromApi)
-				});
-		}, []);
-		*/
+	const Header = () =>
+		<Nav
+			activeKey="/home"
+			onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+		>
+			<Nav.Item>
+				<Nav.Link href="/home">MovieFlix</Nav.Link>
+			</Nav.Item>
+			<Nav.Item>
+				<Nav.Link eventKey="link-1">About</Nav.Link>
+			</Nav.Item>
+			<Nav.Item>
+				<Nav.Link eventKey="link-2">Portfolio Site</Nav.Link>
+			</Nav.Item>
+		</Nav>
+
 
 	useEffect(() => {
 		if (!token) {
@@ -58,48 +59,59 @@ export const MainView = () => {
 	}, [token]);
 
 
-	if (selectedMovie) {
-		return (
-			<MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-		)
-	}
-	/*
-	if (movies.length === 0) {
-		return <div>The list is empty!</div>
-	}*/
-
-	if (!user) {
-		return (
-			<>
-				<LoginView
-					onLoggedIn={(user, token) => {
-						setUser(user);
-						setToken(token);
-					}}
-				/>
-				or
-				<SignupView />
-			</>
-		);
-	}
 
 	return (
-		<div>
-			{movies.map((movie) => (
-				<MovieCard
-					key={movie.id}
-					movie={movie}
-					onMovieClick={(newSelectedMovie) => {
-						setSelectedMovie(newSelectedMovie);
-					}}
-				/>
-			))}
-			<button onClick={() => {
-				setUser(null);
-				setToken(null);
-				localStorage.removeItem('user');
-				localStorage.removeItem('token')
-			}}>Logout</button>
-		</div>
+		<Row className="justify-content-md-center">
+			{!user ? (
+				<>
+					<Header />
+					<br></br>
+					<br></br>
+					<Col md={5}>
+						<LoginView
+							onLoggedIn={(user, token) => {
+								setUser(user);
+								setToken(token);
+							}}
+						/>
+						<br></br>
+						or Signup
+						<br></br>
+						<br></br>
+						<SignupView />
+					</Col>
+				</>
+			) : selectedMovie ? (
+				<Col md={8} style={{ border: "1px solid black" }}>
+					<MovieView
+						style={{ border: "1px solid green" }}
+						movie={selectedMovie}
+						onBackClick={() => setSelectedMovie(null)}
+					/>
+				</Col>
+			) : movies.length === 0 ? (
+				<div>The list is empty!</div>
+			) : (
+				<>
+					{movies.map((movie) => (
+						<Col className="mb-5" key={movies.id} md={3}>
+							<MovieCard
+								key={movie.id}
+								movie={movie}
+								onMovieClick={(newSelectedMovie) => {
+									setSelectedMovie(newSelectedMovie);
+								}}
+							/>
+						</Col>
+					))}
+					<button onClick={() => {
+						setUser(null);
+						setToken(null);
+						localStorage.removeItem('user');
+						localStorage.removeItem('token')
+					}}>Logout</button>
+				</>
+			)}
+		</Row>
 	)
 }
