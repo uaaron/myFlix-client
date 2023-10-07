@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import NavItem from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Nagivate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 
 
 export const MainView = () => {
@@ -96,7 +96,7 @@ export const MainView = () => {
 						}
 					/>
 					<Route
-						path="/books/:bookID"
+						path="/movies/:movieId"
 						element={
 							<>
 								{!user ? (
@@ -122,10 +122,15 @@ export const MainView = () => {
 								) : (
 									<>
 										{movies.map((movie) => (
+
 											<Col className="mb-4" key={movie.id} md={3}>
 												<MovieCard movie={movie} />
 											</Col>
+
 										))}
+										<Link to="/login">
+											<button>Logout</button>
+										</Link>
 									</>
 								)}
 							</>
@@ -133,6 +138,6 @@ export const MainView = () => {
 					/>
 				</Routes>
 			</Row>
-		</BrowserRouter>
+		</BrowserRouter >
 	);
 };
