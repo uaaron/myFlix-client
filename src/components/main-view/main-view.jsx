@@ -3,10 +3,9 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Nav from "react-bootstrap/Nav";
-import NavItem from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 
 
@@ -17,23 +16,23 @@ export const MainView = () => {
 	const [selectedMovie, setSelectedMovie] = useState(null);
 	const [user, setUser] = useState(storedUser ? storedUser : null);
 	const [token, setToken] = useState(storedToken ? storedToken : null);
-
-	const Header = () =>
-		<Nav
-			activeKey="/home"
-			onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-		>
-			<Nav.Item>
-				<Nav.Link href="/home">MovieFlix</Nav.Link>
-			</Nav.Item>
-			<Nav.Item>
-				<Nav.Link eventKey="link-1">About</Nav.Link>
-			</Nav.Item>
-			<Nav.Item>
-				<Nav.Link eventKey="link-2">Portfolio Site</Nav.Link>
-			</Nav.Item>
-		</Nav>
-
+	/*
+		const Header = () =>
+			<Nav
+				activeKey="/home"
+				onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+			>
+				<Nav.Item>
+					<Nav.Link href="/home">MovieFlix</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link eventKey="link-1">About</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link eventKey="link-2">Portfolio Site</Nav.Link>
+				</Nav.Item>
+			</Nav>
+	*/
 
 	useEffect(() => {
 		if (!token) {
@@ -64,6 +63,14 @@ export const MainView = () => {
 
 	return (
 		<BrowserRouter>
+			<NavigationBar
+				user={user}
+				onLoggedOut={() => {
+					setUser(null);
+					setToken(null);
+					localStorage.clear();
+				}}
+			/>
 			<Row className="justify-content-md-center">
 				<Routes>
 					<Route
@@ -78,7 +85,6 @@ export const MainView = () => {
 									</Col>
 								)}
 							</>
-
 						}
 					/>
 					<Route
