@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -61,6 +62,7 @@ export const LoginView = ({ onLoggedIn }) => {
         />
       </Form.Group>
       <Button type="submit">Submit</Button>
+      <span>Not a Member?</span>{'  '}<Link to="/signup">Signup</Link>
     </Form>
   );
 };

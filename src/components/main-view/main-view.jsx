@@ -3,6 +3,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -13,7 +14,6 @@ export const MainView = () => {
 	const storedUser = JSON.parse(localStorage.getItem("user"));
 	const storedToken = localStorage.getItem("token");
 	const [movies, setMovies] = useState([]);
-	const [selectedMovie, setSelectedMovie] = useState(null);
 	const [user, setUser] = useState(storedUser ? storedUser : null);
 	const [token, setToken] = useState(storedToken ? storedToken : null);
 	/*
@@ -115,6 +115,14 @@ export const MainView = () => {
 									</Col>
 								)}
 							</>
+						}
+					/>
+					<Route
+						path="/profile"
+						element={
+							<Col md={5}>
+								<ProfileView />
+							</Col>
 						}
 					/>
 					<Route

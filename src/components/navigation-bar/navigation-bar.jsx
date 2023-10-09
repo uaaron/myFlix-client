@@ -12,6 +12,9 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
             <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+            <Nav.Link as={Link} to="/signup">Signup</Nav.Link>
             <Nav.Link onClick={onLoggedOut} as={Link} to="/login">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
