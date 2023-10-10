@@ -14,7 +14,7 @@ export const MainView = () => {
 	const storedUser = JSON.parse(localStorage.getItem("user"));
 	const storedToken = localStorage.getItem("token");
 	const [movies, setMovies] = useState([]);
-	const [user, setUser] = useState(storedUser ? storedUser : null);
+	//const [user, setUser] = useState(storedUser ? storedUser : null);
 	const [token, setToken] = useState(storedToken ? storedToken : null);
 	/*
 		const Header = () =>
@@ -64,7 +64,7 @@ export const MainView = () => {
 	return (
 		<BrowserRouter>
 			<NavigationBar
-				user={user}
+				user={storedUser}
 				onLoggedOut={() => {
 					setUser(null);
 					setToken(null);
@@ -77,7 +77,7 @@ export const MainView = () => {
 						path="/signup"
 						element={
 							<>
-								{user ? (
+								{storedUser ? (
 									<Navigate to="/" />
 								) : (
 									<Col md={5}>
@@ -91,7 +91,7 @@ export const MainView = () => {
 						path="/login"
 						element={
 							<>
-								{user ? (
+								{storedUser ? (
 									<Navigate to="/" />
 								) : (
 									<Col md={5}>
@@ -105,7 +105,7 @@ export const MainView = () => {
 						path="/movies/:movieId"
 						element={
 							<>
-								{!user ? (
+								{!storedUser ? (
 									<Navigate to="/login" replace />
 								) : movies.length === 0 ? (
 									<Col>The list is empty!</Col>
@@ -120,8 +120,10 @@ export const MainView = () => {
 					<Route
 						path="/profile"
 						element={
-							<Col md={5}>
-								<ProfileView />
+							<Col>
+								<ProfileView
+									user={storedUser}
+								/>
 							</Col>
 						}
 					/>
@@ -129,7 +131,7 @@ export const MainView = () => {
 						path="/"
 						element={
 							<>
-								{!user ? (
+								{!storedUser ? (
 									<Navigate to="/login" replace />
 								) : movies.length === 0 ? (
 									<Col>The list is empty!</Col>

@@ -34,7 +34,7 @@ export const MovieView = ({ movies }) => {
 		</div>
 	);
 };
-
+/*
 MovieView.propTypes = {
 	movie: PropTypes.shape({
 		Title: PropTypes.string.isRequired,
@@ -47,4 +47,4 @@ MovieView.propTypes = {
 			Name: PropTypes.string.isRequired
 		}).isRequired,
 	}).isRequired
-};
+};*/
