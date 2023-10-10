@@ -2,13 +2,20 @@ import { useState } from "react"
 import { Button, Link, Form, Row, Col, Modal } from "react-bootstrap"
 import './profile-view.scss'
 
-export const ProfileView = ({ user }) => {
+export const ProfileView = ({ user, setUser, token, movies }) => {
   const [username, setUsername] = useState(user.UserName);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
   const [showDeregisterModal, setDeregisterModal] = useState(false);
   const [showUpdateModal, setUpdateModal] = useState(false);
+
+
+  const handleShowUpdateModal = () => setUpdateModal(true);
+  const handleCloseUpdateModal = () => setUpdateModal(false);
+
+  const handleShowDeregisterModal = () => setDeregisterModal(true);
+  const handleCloseDeregisterModal = () => setDeregisterModal(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,15 +29,46 @@ export const ProfileView = ({ user }) => {
       data["Password"] = password;
     }
 
-    fetch("")
+    fetch(`https://myflix22-92d05c2f180f.herokuapp.com/users/${user.UserName}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(data)
+    }).then((response) => response.JSON())
+      .then((data) => {
+        if (data) {
+          localStorage.setItem("user", JSON.stringify(data));
+          setUser(data);
+        }
+      })
+      .catch((e) => {
+        alert("Something went wrong");
+      });
+  };
 
+
+  const handleDeleteUser = (event) => {
+    event.preventDefault();
+
+    fetch(`https://myflix22-92d05c2f180f.herokuapp.com/users/${user.UserName}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+    }).then((response) => {
+      if (response.ok) {
+        setUser(null);
+        alert("Your account has been deleted");
+      } else {
+        alert("something went wrong.")
+      }
+    })
   }
 
-  const handleShowUpdateModal = () => setUpdateModal(true);
-  const handleCloseUpdateModal = () => setUpdateModal(false);
 
-  const handleShowDeregisterModal = () => setDeregisterModal(true);
-  const handleCloseDeregisterModal = () => setDeregisterModal(false);
 
   function formatDate(isoDateString) {
     const date = new Date(isoDateString);
@@ -111,7 +149,7 @@ export const ProfileView = ({ user }) => {
         </Modal.Header>
         <Modal.Body>Are you sure you want to delete your account?</Modal.Body>
         <Modal.Footer>
-          <Button>Yes</Button>
+          <Button onClick={handleDeleteUser}>Yes</Button>
           <Button onClick={handleCloseDeregisterModal}>No</Button>
         </Modal.Footer>
       </Modal>
