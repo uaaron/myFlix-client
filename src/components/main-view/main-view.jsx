@@ -16,23 +16,6 @@ export const MainView = () => {
 	const [movies, setMovies] = useState([]);
 	const [user, setUser] = useState(storedUser ? storedUser : null);
 	const [token, setToken] = useState(storedToken ? storedToken : null);
-	/*
-		const Header = () =>
-			<Nav
-				activeKey="/home"
-				onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-			>
-				<Nav.Item>
-					<Nav.Link href="/home">MovieFlix</Nav.Link>
-				</Nav.Item>
-				<Nav.Item>
-					<Nav.Link eventKey="link-1">About</Nav.Link>
-				</Nav.Item>
-				<Nav.Item>
-					<Nav.Link eventKey="link-2">Portfolio Site</Nav.Link>
-				</Nav.Item>
-			</Nav>
-	*/
 
 	useEffect(() => {
 		if (!token) {
@@ -95,7 +78,11 @@ export const MainView = () => {
 									<Navigate to="/" />
 								) : (
 									<Col md={5}>
-										<LoginView onLoggedIn={(user) => setUser(user)} />
+										<LoginView
+											onLoggedIn={(user, token) => {
+												setUser(user);
+												setToken(token);
+											}} />
 									</Col>
 								)}
 							</>
@@ -120,14 +107,20 @@ export const MainView = () => {
 					<Route
 						path="/profile"
 						element={
-							<Col>
-								<ProfileView
-									user={storedUser}
-									setUser={setUser}
-									token={token}
-									movies={movies}
-								/>
-							</Col>
+							<>
+								{!user ? (
+									<Navigate to='/login' replace />
+								) : (
+									<Col>
+										<ProfileView
+											user={storedUser}
+											setUser={setUser}
+											token={token}
+											movies={movies}
+										/>
+									</Col>
+								)}
+							</>
 						}
 					/>
 					<Route
@@ -143,7 +136,12 @@ export const MainView = () => {
 										{movies.map((movie) => (
 
 											<Col className="mb-4" key={movie.id} md={3}>
-												<MovieCard movie={movie} />
+												<MovieCard
+													movie={movie}
+													user={user}
+													token={token}
+													setUser={setUser}
+												/>
 											</Col>
 
 										))}

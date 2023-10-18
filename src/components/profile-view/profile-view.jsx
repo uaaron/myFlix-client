@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Button, Link, Form, Row, Col, Modal } from "react-bootstrap"
 import './profile-view.scss'
+import { MovieCard } from "../movie-card/movie-card";
 
 export const ProfileView = ({ user, setUser, token, movies }) => {
   const [username, setUsername] = useState(user.UserName);
@@ -17,13 +18,17 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
   const handleShowDeregisterModal = () => setDeregisterModal(true);
   const handleCloseDeregisterModal = () => setDeregisterModal(false);
 
+  let result = movies.filter(
+    m => user.FavoriteMovies.includes(m._id)
+  )
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     let data = {
       UserName: username,
       Email: email,
-      Birthday: birthday
+      Birthday: formatDate(birthday)
     };
     if (password) {
       data["Password"] = password;
@@ -36,7 +41,15 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
         Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(data)
-    }).then((response) => response.JSON())
+    }).then((response) => {
+      console.log(response);
+      if (response.ok) {
+        return response.json();
+      } else {
+        alert("failed");
+        return false;
+      }
+    })
       .then((data) => {
         if (data) {
           localStorage.setItem("user", JSON.stringify(data));
@@ -61,6 +74,7 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
     }).then((response) => {
       if (response.ok) {
         setUser(null);
+        localStorage.clear();
         alert("Your account has been deleted");
       } else {
         alert("something went wrong.")
@@ -76,7 +90,7 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
     const day = date.getDate();
     const year = date.getFullYear();
 
-    return `${month}/${day}/${year}`;
+    return `${year}/${month}/${day}`;
   }
 
 
@@ -96,6 +110,23 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
           <Button variant="link" className="text-danger" onClick={handleShowDeregisterModal}>Delete User</Button>
         </Col>
       </Row>
+      <Row>
+        <Col>
+          <h1>Favorite Movies: </h1>
+        </Col>
+      </Row>
+      <Row>
+        {result.map((movie) => {
+          return (
+            <Col>
+              <MovieCard
+                movie={movie}
+              />
+            </Col>
+          );
+        })}
+
+      </Row>
 
 
       <Modal show={showUpdateModal} onHide={handleCloseUpdateModal}>
@@ -103,7 +134,7 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
           <Modal.Title>Update Your Info</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formUsername">
               <Form.Label><strong>Username: </strong> </Form.Label>
               <Form.Control
@@ -118,6 +149,7 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
                 type="text"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="*******"
               />
             </Form.Group>
             <Form.Group controlId="formEmail">
