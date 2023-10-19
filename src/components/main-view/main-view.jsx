@@ -47,7 +47,7 @@ export const MainView = () => {
 	return (
 		<BrowserRouter>
 			<NavigationBar
-				user={storedUser}
+				user={user}
 				onLoggedOut={() => {
 					setUser(null);
 					setToken(null);
@@ -60,7 +60,7 @@ export const MainView = () => {
 						path="/signup"
 						element={
 							<>
-								{storedUser ? (
+								{user ? (
 									<Navigate to="/" />
 								) : (
 									<Col md={5}>
@@ -74,7 +74,7 @@ export const MainView = () => {
 						path="/login"
 						element={
 							<>
-								{storedUser ? (
+								{user ? (
 									<Navigate to="/" />
 								) : (
 									<Col md={5}>
@@ -113,7 +113,7 @@ export const MainView = () => {
 								) : (
 									<Col>
 										<ProfileView
-											user={storedUser}
+											user={user}
 											setUser={setUser}
 											token={token}
 											movies={movies}
@@ -127,7 +127,7 @@ export const MainView = () => {
 						path="/"
 						element={
 							<>
-								{!storedUser ? (
+								{!user ? (
 									<Navigate to="/login" replace />
 								) : movies.length === 0 ? (
 									<Col>The list is empty!</Col>

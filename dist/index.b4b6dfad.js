@@ -27223,7 +27223,7 @@ const MainView = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigationBar.NavigationBar), {
-                user: storedUser,
+                user: user,
                 onLoggedOut: ()=>{
                     setUser(null);
                     setToken(null);
@@ -27241,7 +27241,7 @@ const MainView = ()=>{
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                             path: "/signup",
                             element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                children: storedUser ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                                children: user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                                     to: "/"
                                 }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                     md: 5,
@@ -27256,7 +27256,7 @@ const MainView = ()=>{
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                             path: "/login",
                             element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                children: storedUser ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                                children: user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                                     to: "/"
                                 }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                     md: 5,
@@ -27301,7 +27301,7 @@ const MainView = ()=>{
                                     replace: true
                                 }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
-                                        user: storedUser,
+                                        user: user,
                                         setUser: setUser,
                                         token: token,
                                         movies: movies
@@ -27316,7 +27316,7 @@ const MainView = ()=>{
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                             path: "/",
                             element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                children: !storedUser ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                                children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                                     to: "/login",
                                     replace: true
                                 }, void 0, false, void 0, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
@@ -27394,7 +27394,7 @@ var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
 const MovieCard = ({ movie, user, token, setUser })=>{
     _s();
-    const [isFavorite, setIsFavorite] = (0, _react.useState)(user.FavoriteMovies.includes(movie._id));
+    const [isFavorite, setIsFavorite] = (0, _react.useState)(user.FavoriteMovies.includes(movie.id));
     const addFavoriteMovie = ()=>{
         fetch(`https://myflix22-92d05c2f180f.herokuapp.com/users/${user.UserName}/movies/${movie.id}`, {
             method: "POST",
@@ -27494,7 +27494,7 @@ const MovieCard = ({ movie, user, token, setUser })=>{
         columnNumber: 3
     }, undefined);
 };
-_s(MovieCard, "/z4EtdPjAvhFP5RAzGsQBYNscmo=");
+_s(MovieCard, "HDIGjZN0By0TP/n3OEnMxQdxTgU=");
 _c = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
@@ -48127,7 +48127,7 @@ const ProfileView = ({ user, setUser, token, movies })=>{
     const handleCloseUpdateModal = ()=>setUpdateModal(false);
     const handleShowDeregisterModal = ()=>setDeregisterModal(true);
     const handleCloseDeregisterModal = ()=>setDeregisterModal(false);
-    let result = movies.filter((m)=>user.FavoriteMovies.includes(m._id));
+    let result = movies.filter((m)=>user.FavoriteMovies.includes(m.id));
     const handleSubmit = (event)=>{
         event.preventDefault();
         let data = {

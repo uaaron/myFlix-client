@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export const MovieCard = ({ movie, user, token, setUser }) => {
 	const [isFavorite, setIsFavorite] = useState(
-		user.FavoriteMovies.includes(movie._id)
+		user.FavoriteMovies.includes(movie.id)
 	);
 
 	const addFavoriteMovie = () => {

@@ -19,7 +19,7 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
   const handleCloseDeregisterModal = () => setDeregisterModal(false);
 
   let result = movies.filter(
-    m => user.FavoriteMovies.includes(m._id)
+    m => user.FavoriteMovies.includes(m.id)
   )
 
   const handleSubmit = (event) => {
