@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -43,6 +44,7 @@ export const LoginView = ({ onLoggedIn }) => {
       <Form.Group controlId="formUsername">
         <Form.Label>Username: </Form.Label>
         <Form.Control
+          style={{ border: '2px solid #000' }}
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -52,37 +54,15 @@ export const LoginView = ({ onLoggedIn }) => {
       <Form.Group controlId="formPassword">
         <Form.Label>Password:</Form.Label>
         <Form.Control
+          style={{ border: '2px solid #000' }}
           type="text"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
       </Form.Group>
       <Button type="submit">Submit</Button>
+      <span>Not a Member?</span>{'  '}<Link to="/signup">Signup</Link>
     </Form>
-    /*
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        //minlength="6"
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
-    </form>*/
   );
 };
