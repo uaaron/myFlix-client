@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button, Link, Form, Row, Col, Modal } from "react-bootstrap"
 import './profile-view.scss'
 import { MovieCard } from "../movie-card/movie-card";
@@ -21,6 +21,7 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
   let result = movies.filter(
     m => user.FavoriteMovies.includes(m.id)
   )
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -90,7 +91,7 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
     const day = date.getDate();
     const year = date.getFullYear();
 
-    return `${year}/${month}/${day}`;
+    return `${month}/${day}/${year}`;
   }
 
 
@@ -98,7 +99,7 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
     <>
       <Row>
         <Col md={5}>
-          <h1>Profile Info</h1>
+          <h1>Profile Info:</h1>
           <p><strong>Username:</strong> {user.UserName}</p>
           <p><strong>Email:</strong> {user.Email}</p>
           <p><strong>Birthday:</strong> {formatDate(user.Birthday)}</p>
@@ -118,7 +119,7 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
       <Row>
         {result.map((movie) => {
           return (
-            <Col key={movie.id}>
+            <Col key={movie.id} md={4}>
               <MovieCard
                 movie={movie}
                 user={user}

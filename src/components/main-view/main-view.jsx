@@ -145,9 +145,6 @@ export const MainView = () => {
 											</Col>
 
 										))}
-										<Link to="/login">
-											<button>Logout</button>
-										</Link>
 									</>
 								)}
 							</>
