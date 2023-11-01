@@ -1,5 +1,10 @@
 
 
+.searchbar {
+  width: 300px;
+  margin: 20px;
+}
+
 img {
   width: 100%;
 }

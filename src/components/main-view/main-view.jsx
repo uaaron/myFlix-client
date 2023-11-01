@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./main-view.scss";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
@@ -16,6 +17,7 @@ export const MainView = () => {
 	const [movies, setMovies] = useState([]);
 	const [user, setUser] = useState(storedUser ? storedUser : null);
 	const [token, setToken] = useState(storedToken ? storedToken : null);
+	const [searchTerm, setSearchTerm] = useState("");
 
 	useEffect(() => {
 		if (!token) {
@@ -133,7 +135,21 @@ export const MainView = () => {
 									<Col>The list is empty!</Col>
 								) : (
 									<>
-										{movies.map((movie) => (
+										<input
+											type="text"
+											placeholder="Search..."
+											className="searchbar"
+											onChange={(event) => {
+												setSearchTerm(event.target.value);
+											}}
+										/>
+										{movies.filter((movie) => {
+											if (searchTerm == "") {
+												return movie
+											} else if (movie.Title.toLowerCase().includes(searchTerm.toLowerCase())) {
+												return movie
+											}
+										}).map((movie) => (
 
 											<Col className="mb-4" key={movie.id} md={3}>
 												<MovieCard
