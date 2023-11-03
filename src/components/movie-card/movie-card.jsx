@@ -39,8 +39,8 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 			.then((response) => response.json())
 			.then((user) => {
 				localStorage.setItem("user", JSON.stringify(user));
-				setUser(user);
 				setIsFavorite(false);
+				location.reload()
 			})
 			.catch((e) => {
 				console.error(e);

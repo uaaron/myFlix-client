@@ -27322,7 +27322,7 @@ const MainView = ()=>{
                                     to: "/login",
                                     replace: true
                                 }, void 0, false, void 0, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                    children: "The list is empty!"
+                                    children: "Loading..."
                                 }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                     children: [
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -27426,8 +27426,8 @@ const MovieCard = ({ movie, user, token, setUser })=>{
             }
         }).then((response)=>response.json()).then((user)=>{
             localStorage.setItem("user", JSON.stringify(user));
-            setUser(user);
             setIsFavorite(false);
+            location.reload();
         }).catch((e)=>{
             console.error(e);
             alert("Something went wrong");
