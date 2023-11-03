@@ -27427,7 +27427,7 @@ const MovieCard = ({ movie, user, token, setUser })=>{
         }).then((response)=>response.json()).then((user)=>{
             localStorage.setItem("user", JSON.stringify(user));
             setIsFavorite(false);
-            location.reload();
+        //location.reload()
         }).catch((e)=>{
             console.error(e);
             alert("Something went wrong");
